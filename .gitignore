@@ -1,0 +1,39 @@
+# Environnement virtuel
+.venv/
+venv/
+ENV/
+
+# Fichiers Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# SQLite
+db.sqlite3
+
+# Django
+*.log
+*.pot
+*.pyc
+*.mo
+
+# Static/dynamic
+staticfiles/
+media/
+*.tmp
+
+# VSCode / IDEs
+.vscode/
+.idea/
+
+# Fichiers de test ou temporaires
+.DS_Store
+*.swp
+*.swo
+*.bak
+*.orig
+
+# fichiers générés
+users.txt

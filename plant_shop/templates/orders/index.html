@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+{% block title %}Mes Commandes{% endblock %}
+{% block content %}
+<h1>📦 Mes Commandes</h1>
+{% if orders %}
+  <ul>
+    {% for order in orders %}
+      <li>
+        <strong>Commande n°{{ order.display_number }}</strong> — {{ order.status }} — {{ order.total_price }} €
+        <ul>
+          {% for item in order.items.all %}
+          <li>{{ item.quantity }} × {{ item.plant.name }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Aucune commande.</p>
+{% endif %}
+
+<script>
+if (window.location.search.includes("cleared=1")) {
+  Cart.clear();
+}
+</script>
+{% endblock %}

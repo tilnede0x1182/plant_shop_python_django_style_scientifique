@@ -1,0 +1,33 @@
+{% extends "layouts/base.html" %}
+{% block title %}Utilisateurs Admin{% endblock %}
+{% block content %}
+<h1>👥 Utilisateurs (Admin)</h1>
+<a href="{% url 'admin_users_new' %}" class="btn btn-green mb-3">➕ Nouvel utilisateur</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Email</th>
+			<th>Nom</th>
+			<th>Admin</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in users %}
+		<tr>
+			<td><a href="{% url 'admin_users_show' user.id %}">{{ user.name }}</a></td>
+			<td>{{ user.email }}</td>
+			<td>{{ user.admin|yesno:"✅,❌" }}</td>
+			<td><a href="{% url 'admin_users_edit' user.id %}" class="btn btn-warning btn-sm">✏️</a></td>
+			<td>
+				<form method="post" action="{% url 'admin_users_delete' user.id %}" style="display:inline;"
+					onsubmit="return confirm('Supprimer cet utilisateur ?');">
+					{% csrf_token %}
+					<button class="btn btn-danger btn-sm">🗑️</button>
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

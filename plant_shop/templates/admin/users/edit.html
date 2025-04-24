@@ -1,0 +1,10 @@
+{% extends "layouts/base.html" %}
+{% block title %}Modifier utilisateur{% endblock %}
+{% block content %}
+<h1>✏️ Modifier {{ user.email }}</h1>
+<form method="post">{% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn-green">Mettre à jour</button>
+</form>
+<a href="{% url 'admin_users' %}">← Retour</a>
+{% endblock %}

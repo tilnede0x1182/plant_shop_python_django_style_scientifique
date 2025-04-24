@@ -1,0 +1,33 @@
+{% extends "layouts/base.html" %}
+{% block title %}Plantes Admin{% endblock %}
+{% block content %}
+<h1>🌿 Plantes (Admin)</h1>
+<a href="{% url 'admin_plants_new' %}" class="btn btn-green mb-3">➕ Nouvelle plante</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Prix</th>
+			<th>Stock</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for plant in plants %}
+		<tr>
+			<td><a href="{% url 'plant_show' plant.id %}">{{ plant.name }}</a></td>
+			<td>{{ plant.price }} €</td>
+			<td>{{ plant.stock }}</td>
+			<td><a href="{% url 'admin_plants_edit' plant.id %}" class="btn btn-warning btn-sm">✏️</a></td>
+			<td>
+				<form method="post" action="{% url 'admin_plants_delete' plant.id %}" style="display:inline;"
+					onsubmit="return confirm('Supprimer cette plante ?');">
+					{% csrf_token %}
+					<button class="btn btn-danger btn-sm">🗑️</button>
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

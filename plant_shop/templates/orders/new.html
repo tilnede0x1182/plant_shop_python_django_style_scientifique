@@ -1,0 +1,19 @@
+{% extends "layouts/base.html" %}
+{% block title %}Nouvelle commande{% endblock %}
+{% block content %}
+<h1>📦 Nouvelle Commande</h1>
+<form method="post" action="{% url 'order_create' %}">
+  {% csrf_token %}
+  <input type="hidden" id="order-items-input" name="items">
+  <div id="order-review-container"></div>
+  <div class="text-end mt-3">
+    <button class="btn-green" type="submit">Confirmer la commande</button>
+  </div>
+</form>
+{% endblock %}
+
+{% if request.GET.cleared %}
+<script>
+  Cart.clear();
+</script>
+{% endif %}

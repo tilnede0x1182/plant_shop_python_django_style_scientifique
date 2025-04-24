@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% block title %}Mon Profil{% endblock %}
+{% block content %}
+<h1>👤 Mon Profil</h1>
+<ul>
+  <li><strong>Nom d'utilisateur :</strong> {{ user.username }}</li>
+  <li><strong>Email :</strong> {{ user.email }}</li>
+  <li><strong>Nom complet :</strong> {{ user.name }}</li>
+  <li><strong>Admin :</strong> {{ user.admin|yesno:"Oui,Non" }}</li>
+</ul>
+<a href="{% url 'admin_users_edit' user.id %}" class="btn btn-warning mt-3">✏️ Modifier mon profil</a>
+{% endblock %}

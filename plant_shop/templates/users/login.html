@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+{% block title %}Connexion{% endblock %}
+{% block content %}
+<h1>🔐 Connexion</h1>
+<form method="post">
+  {% csrf_token %}
+  {% if form.errors %}
+    <div class="alert alert-danger">Nom d'utilisateur ou mot de passe invalide.</div>
+  {% endif %}
+	<div>
+		<label>Email :</label>
+		<input type="email" name="username" required>
+	</div>
+  <div>
+    <label>Mot de passe :</label>
+    <input type="password" name="password" required>
+  </div>
+  <button class="btn-green" type="submit">Se connecter</button>
+</form>
+{% endblock %}

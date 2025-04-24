@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+{% block title %}{{ plant.name }}{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">{{ plant.name }}</h1>
+<div class="card-fun mb-4">
+  <p><strong>Prix :</strong> {{ plant.price }} €</p>
+  <p><strong>Stock :</strong> {{ plant.stock }}</p>
+  <p>{{ plant.description }}</p>
+  <button class="btn-green w-100" onclick="Cart.add({{ plant.id }}, '{{ plant.name|escapejs }}', {{ plant.price }})">Ajouter au panier</button>
+</div>
+
+{% if user.is_authenticated and user.admin %}
+  <div class="d-flex gap-2">
+    <a href="{% url 'admin_plants_edit' plant.id %}" class="btn btn-warning">✏️ Modifier</a>
+    <form method="post" action="{% url 'admin_plants_delete' plant.id %}" onsubmit="return confirm('Supprimer cette plante ?');">
+      {% csrf_token %}
+      <button class="btn btn-danger">🗑️ Supprimer</button>
+    </form>
+  </div>
+{% endif %}
+<a href="{% url 'plants_index' %}">← Retour à la liste</a>
+{% endblock %}
