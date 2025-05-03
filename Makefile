@@ -8,7 +8,7 @@ install:
 	$(VENV)/bin/pip install -r requirements.txt
 
 run:
-	clear && $(MANAGE) runserver 127.0.0.1:8003
+	clear && $(MANAGE) runserver 127.0.0.1:8002
 
 makemigrations:
 	$(MANAGE) makemigrations plant_shop

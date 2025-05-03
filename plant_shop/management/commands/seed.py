@@ -22,7 +22,7 @@ class Command(BaseCommand):
         admins, users = [], []
         for i in range(3):
             admins.append(User.objects.create_user(
-                email=f"admin{i+1}@example.com",
+                email=f"admin{i+1}@plantshop.com",
                 password="password", admin=True, name=fake.name()))
 
         for _ in range(20):
