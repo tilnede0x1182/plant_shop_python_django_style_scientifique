@@ -94,7 +94,7 @@ class Command(BaseCommand):
         admins, users = [], []
         for i in range(3):
             admins.append(User.objects.create_user(
-                email=f"admin{i+1}@example.com",
+                email=f"admin{i+1}@plantshop.com",
                 password="password", admin=True, name=fake.name()))
 
         for _ in range(20):
@@ -1084,38 +1084,43 @@ class LoginView(DjangoLoginView):
         print("Connexion réussie pour :", form.get_user())
         return super().form_valid(form)
 
+# requirements.txt
+
+Django>=4.2,<5.0
+Faker>=8.0
+
 # users.txt
 
 Liste des utilisateurs générés :
 
 Admins
 
-admin1@example.com password
-admin2@example.com password
-admin3@example.com password
+admin1@plantshop.com password
+admin2@plantshop.com password
+admin3@plantshop.com password
 
 Utilisateurs normaux
 
-bousquetdanielle@example.net password
-gdubois@example.com password
-penelopegomes@example.org password
-louiserichard@example.net password
-valetteanastasie@example.org password
-dianeleveque@example.com password
-adelaidepires@example.com password
-nturpin@example.net password
-richardsusan@example.net password
-henriettetexier@example.net password
-vdelannoy@example.org password
-bruneaujules@example.net password
-dijouxmargaret@example.net password
-gilles92@example.com password
-penelopefernandes@example.com password
-raymond39@example.org password
-suzanne50@example.org password
-louiseteixeira@example.net password
-girardsuzanne@example.com password
-andree80@example.com password
+elisemichaud@example.org password
+juliette93@example.com password
+le-goffsuzanne@example.com password
+legroslucy@example.net password
+philippechartier@example.org password
+jacquesbrunel@example.com password
+zhamon@example.net password
+victor79@example.org password
+hparis@example.net password
+beguepaul@example.org password
+gerard61@example.com password
+rochervalentine@example.org password
+daniellecolas@example.com password
+flemoine@example.org password
+paulinehubert@example.com password
+bergeraurore@example.org password
+jpasquier@example.com password
+adelaide19@example.net password
+zfrancois@example.net password
+paulfernandez@example.com password
 
 
 # ===== STRUCTURE DU PROJET =====
@@ -1201,7 +1206,8 @@ andree80@example.com password
 │   └── wsgi.py
 ├── projet.txt
 ├── README.md
+├── requirements.txt
 ├── script.sh
 └── users.txt
 
-22 directories, 62 files
+22 directories, 63 files
