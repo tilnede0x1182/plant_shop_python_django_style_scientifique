@@ -53,10 +53,10 @@ def order_create(request):
         plant.save(update_fields=["stock"])
         total += plant.price * qty
 
-        order.total_price = total
-        order.save(update_fields=["total_price"])
-        messages.success(request, "Commande confirmée.")
-        return redirect("/orders/?cleared=1")
+    order.total_price = total
+    order.save(update_fields=["total_price"])
+    messages.success(request, "Commande confirmée.")
+    return redirect("/orders/?cleared=1")
 
 @login_required
 def profile_view(request):
