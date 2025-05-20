@@ -1,4 +1,3 @@
-
 // # Classe représentant le panier
 class Cart {
 	// ## Fonctions de stockage
@@ -23,6 +22,16 @@ class Cart {
 		localStorage.setItem("cart", JSON.stringify(cart));
 	}
 
+	/**
+	 * Enregistre l'état du panier et met à jour l'affichage du compteur dans la navbar.
+	 *
+	 * @param {Object} cart - Objet représentant le contenu actuel du panier.
+	 */
+	static #commitCart(cart) {
+		this.save(cart);
+		this.updateNavbarCount();
+	}
+
 	// ## Fonctions de modification
 
 	/**
@@ -34,13 +43,19 @@ class Cart {
 	 */
 	static add(id, name, price, stock) {
 		const cart = this.get();
-		if (cart[id]) {
-			if (cart[id].quantity < stock) cart[id].quantity++;
-		} else {
-			cart[id] = { id, name, price, quantity: 1, stock };
+		if (!cart[id]) {
+			cart[id] = { id, name, price, quantity: 0, stock };
 		}
-		this.save(cart);
-		this.updateNavbarCount();
+		if (cart[id].quantity >= stock) {
+			showStockAlert(name, stock);
+			setTimeout(() => {
+				cart[id].quantity = stock;
+				Cart.#commitCart(cart);
+			}, 300);
+		} else {
+			cart[id].quantity++;
+			Cart.#commitCart(cart);
+		}
 	}
 
 	/**
@@ -106,7 +121,8 @@ class Cart {
 		for (const id in cart) totalQuantity += cart[id].quantity;
 		const link = document.getElementById("cart-link");
 		if (link) {
-			link.textContent = "🛒 Panier" + (totalQuantity > 0 ? ` (${totalQuantity})` : "");
+			link.textContent =
+				"🛒 Panier" + (totalQuantity > 0 ? ` (${totalQuantity})` : "");
 		}
 	}
 
@@ -115,13 +131,17 @@ class Cart {
 	 * @param {string} containerId ID du conteneur HTML
 	 * @param {string} inputId ID du champ hidden
 	 */
-	static renderOrderReview(containerId = "order-review-container", inputId = "order-items-input") {
+	static renderOrderReview(
+		containerId = "order-review-container",
+		inputId = "order-items-input"
+	) {
 		const container = document.getElementById(containerId);
 		const input = document.getElementById(inputId);
 		if (!container || !input) return;
 		container.innerHTML = "";
 		const cart = this.get();
-		if (Object.keys(cart).length === 0) return this._renderEmpty(container, input);
+		if (Object.keys(cart).length === 0)
+			return this._renderEmpty(container, input);
 		this._renderOrderTable(container, input, cart);
 	}
 
@@ -161,7 +181,7 @@ class Cart {
 		const thead = document.createElement("thead");
 		thead.className = "table-dark";
 		const row = document.createElement("tr");
-		headers.forEach(text => {
+		headers.forEach((text) => {
 			const cell = document.createElement("th");
 			cell.textContent = text;
 			row.appendChild(cell);
@@ -179,7 +199,9 @@ class Cart {
 	static _renderOrderTable(container, input, cart) {
 		const table = document.createElement("table");
 		table.className = "table shadow";
-		table.appendChild(this._renderTableHeader(["Plante", "Quantité", "Total"]));
+		table.appendChild(
+			this._renderTableHeader(["Plante", "Quantité", "Total"])
+		);
 		const tbody = document.createElement("tbody");
 		let total = 0;
 		const items = [];
@@ -228,7 +250,9 @@ class Cart {
 	static _renderCartTable(container, cart) {
 		const table = document.createElement("table");
 		table.className = "table";
-		table.appendChild(this._renderTableHeader(["Plante", "Quantité", "Action"]));
+		table.appendChild(
+			this._renderTableHeader(["Plante", "Quantité", "Action"])
+		);
 		const tbody = document.createElement("tbody");
 		let total = 0;
 		for (const id in cart) {
@@ -323,6 +347,53 @@ class Cart {
 	}
 }
 
+/**
+ * Affiche une alerte personnalisée en haut de la page si stock insuffisant.
+ * @param {string} plantName Nom de la plante concernée
+ * @param {number} stock Quantité maximale disponible
+ */
+function showStockAlert(plantName, stock) {
+	const wrapper = document.getElementById("cart-alert-wrapper") || createCartAlertWrapper();
+	const alertId = `alert-${plantName.replace(/\s+/g, "-").toLowerCase()}`;
+
+	if (document.getElementById(alertId)) return;
+
+	const alertBox = document.createElement("div");
+	alertBox.id = alertId;
+	alertBox.className = "cart-alert-box";
+	alertBox.textContent = `Stock insuffisant pour ${plantName} – il reste ${stock} exemplaire(s).`;
+
+	wrapper.appendChild(alertBox);
+	setTimeout(() => alertBox.classList.add("visible"), 10);
+	setTimeout(() => {
+		alertBox.classList.remove("visible");
+		setTimeout(() => alertBox.remove(), 300);
+	}, 3000);
+}
+
+/**
+ * Crée le conteneur global pour les alertes stock si absent.
+ * @returns {HTMLElement} Élément DOM créé
+ */
+function createCartAlertWrapper() {
+	const wrapper = document.createElement("div");
+	wrapper.id = "cart-alert-wrapper";
+	wrapper.style.position = "fixed";
+	wrapper.style.top = "0";
+	wrapper.style.left = "0";
+	wrapper.style.right = "0";
+	wrapper.style.zIndex = "9999";
+	wrapper.style.display = "flex";
+	wrapper.style.justifyContent = "center";
+	wrapper.style.pointerEvents = "none";
+	wrapper.style.flexDirection = "column";
+	wrapper.style.gap = "0.5rem";
+	wrapper.style.padding = "1rem";
+	document.body.appendChild(wrapper);
+	return wrapper;
+}
+
+
 // # Initialisation interface
 
 /**
@@ -332,11 +403,11 @@ function initDropdown() {
 	const toggle = document.querySelector(".dropdown-toggle");
 	const menu = document.querySelector(".dropdown-menu");
 	if (toggle && menu) {
-		toggle.addEventListener("click", event => {
+		toggle.addEventListener("click", (event) => {
 			event.preventDefault();
 			menu.classList.toggle("show");
 		});
-		document.addEventListener("click", event => {
+		document.addEventListener("click", (event) => {
 			if (!event.target.closest(".dropdown")) {
 				menu.classList.remove("show");
 			}
