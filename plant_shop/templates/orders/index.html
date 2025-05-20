@@ -9,7 +9,7 @@
         <strong>Commande n°{{ order.display_number }}</strong> — {{ order.status }} — {{ order.total_price }} €
         <ul>
           {% for item in order.items.all %}
-          <li>{{ item.quantity }} × {{ item.plant.name }}</li>
+          <li>{{ item.quantity }} × <a href="{% url 'plant_show' item.plant.id %}">{{ item.plant.name }}</a></li>
           {% endfor %}
         </ul>
       </li>
