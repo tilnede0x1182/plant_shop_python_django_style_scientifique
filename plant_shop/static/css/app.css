@@ -1,102 +1,122 @@
-:root{--elec-blue:#0066ff;--fun-green:#00c851;--fun-orange:#ff6d00;--fun-yellow:#ffdd00}
-.card-fun{position:relative;background:rgba(0,102,255,.05);border:1px solid var(--elec-blue);
-   border-radius:1rem 1rem 0 1rem;padding:1rem}
-.card-fun::after{content:"";position:absolute;right:-10px;top:-10px;
-   border-width:0 0 40px 40px;border-style:solid;border-color:transparent transparent var(--fun-orange) transparent;opacity:.75}
-.btn-green{background:var(--fun-green);color:#fff}
-.btn-orange{background:var(--fun-orange);color:#fff}
+/* # Variables globales */
+:root {
+	--elec-blue: #0066ff;
+	--fun-green: #00c851;
+	--fun-orange: #ff6d00;
+	--fun-yellow: #ffdd00;
+}
+
+/* # Composants */
+/* ## Cartes */
+.card-fun {
+	position: relative;
+	background: rgba(0, 102, 255, 0.05);
+	border: 1px solid var(--elec-blue);
+	border-radius: 1rem 1rem 0 1rem;
+	padding: 1rem;
+}
+.card-fun::after {
+	content: "";
+	position: absolute;
+	right: -10px;
+	top: -10px;
+	border-width: 0 0 40px 40px;
+	border-style: solid;
+	border-color: transparent transparent var(--fun-orange) transparent;
+	opacity: 0.75;
+}
+
+/* ## Boutons */
+.btn-green {
+	background: var(--fun-green);
+	color: #fff;
+}
+.btn-orange {
+	background: var(--fun-orange);
+	color: #fff;
+}
+
+/* # Layout */
+/* ## Grille responsive */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 1rem;
 }
 
+/* ## Barre de navigation */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--elec-blue);
-  padding: 1rem;
-  border-radius: 0 0 1rem 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: var(--elec-blue);
+	padding: 1rem;
+	border-radius: 0 0 1rem 1rem;
 }
 
+/* ### Zones gauche/droite */
 .navbar-left,
 .navbar-right {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-right a {
-  margin-left: 1rem;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-.navbar a:hover {
-  text-decoration: underline;
-}
-.hidden {
-  display: none;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--elec-blue);
-  padding: 1rem;
-  border-radius: 0 0 1rem 1rem;
-}
-.navbar-left .shop-logo {
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: white;
-  text-decoration: none;
+	display: flex;
+	align-items: center;
 }
 .navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+	gap: 1.5rem;
 }
+
+/* ### Logo */
+.navbar-left .shop-logo {
+	font-weight: bold;
+	font-size: 1.2rem;
+	color: white;
+	text-decoration: none;
+}
+
+/* ### Liens */
 .navbar a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
 }
 .navbar a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
+}
+.navbar-right a {
+	margin-left: 1rem;
 }
 
+/* ## Dropdown */
 .dropdown {
-  position: relative;
+	position: relative;
 }
-
 .dropdown-menu {
-  display: none;
-  position: absolute;
-  right: 0;
-  background: white;
-  padding: 0.5rem;
-  border: 1px solid var(--elec-blue);
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  z-index: 1000;
+	display: none;
+	position: absolute;
+	right: 0;
+	background: white;
+	padding: 0.5rem;
+	border: 1px solid var(--elec-blue);
+	border-radius: 0.5rem;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
 }
-
 .dropdown-menu a {
-  display: block;
-  color: var(--elec-blue);
-  text-decoration: none;
-  padding: 0.25rem 0;
+	display: block;
+	color: var(--elec-blue);
+	text-decoration: none;
+	padding: 0.25rem 0;
 }
-
 .dropdown-menu.show {
-  display: block;
+	display: block;
 }
 
+/* # États spéciaux */
+.hidden {
+	display: none;
+}
+
+/* # Alertes */
+/* ## Alerte panier stock insuffisant */
 .cart-alert-box {
 	background-color: #ffc107;
 	color: #000;
@@ -112,7 +132,6 @@
 	font-weight: bold;
 	text-align: center;
 }
-
 .cart-alert-box.visible {
 	opacity: 1;
 	transform: translateY(0);
