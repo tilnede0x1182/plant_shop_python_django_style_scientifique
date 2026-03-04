@@ -1,0 +1,314 @@
+# ============================================================================
+# plant_shop/models.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop/models.py
+============================================================
+
+--- FONCTIONS ---
+OK : toutes les fonctions <= 15 lignes
+Fonctions sans Javadoc :
+  - create_user (ligne 5)
+  - create_superuser (ligne 14)
+  - __str__ (ligne 28)
+  - is_staff (ligne 32)
+  - __str__ (ligne 40)
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+Intervalles > 50 lignes :
+  - lignes 1-53 : 53 lignes
+
+--- VARIABLES ---
+OK : aucun nom cryptique détecté
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
+# ============================================================================
+# plant_shop/views.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop/views.py
+============================================================
+
+--- FONCTIONS ---
+Fonctions > 15 lignes :
+  - order_create (ligne 44) : 17 lignes
+Fonctions sans Javadoc :
+  - plant_index (ligne 12)
+  - plant_show (ligne 15)
+  - cart_index (ligne 18)
+  - signup (ligne 21)
+  - order_index (ligne 33)
+  - order_new (ligne 40)
+  - order_create (ligne 44)
+  - profile_view (ligne 62)
+  - admin_plants_index (ligne 66)
+  - admin_plants_new (ligne 70)
+  - admin_plants_edit (ligne 78)
+  - admin_plants_delete (ligne 87)
+  - admin_users_index (ligne 96)
+  - admin_users_show (ligne 100)
+  - admin_users_new (ligne 105)
+  - admin_users_edit (ligne 117)
+  - admin_users_delete (ligne 128)
+  - form_invalid (ligne 142)
+  - form_valid (ligne 147)
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+Intervalles > 50 lignes :
+  - lignes 1-149 : 149 lignes
+
+--- VARIABLES ---
+Accents manquants :
+  - login_url (ligne 10) : url → URL
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
+# ============================================================================
+# plant_shop/urls.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop/urls.py
+============================================================
+
+--- FONCTIONS ---
+OK : toutes les fonctions <= 15 lignes
+OK : toutes les fonctions ont un Javadoc
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+OK : tous les intervalles <= 50 lignes
+
+--- VARIABLES ---
+Noms potentiellement cryptiques (à vérifier) :
+  - urlpatterns (ligne 6) : segments non reconnus [urlpatterns]
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
+# ============================================================================
+# plant_shop/forms.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop/forms.py
+============================================================
+
+--- FONCTIONS ---
+OK : toutes les fonctions <= 15 lignes
+OK : toutes les fonctions ont un Javadoc
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+OK : tous les intervalles <= 50 lignes
+
+--- VARIABLES ---
+OK : aucun nom cryptique détecté
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
+# ============================================================================
+# plant_shop/admin.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop/admin.py
+============================================================
+
+--- FONCTIONS ---
+OK : toutes les fonctions <= 15 lignes
+OK : toutes les fonctions ont un Javadoc
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+OK : tous les intervalles <= 50 lignes
+
+--- VARIABLES ---
+OK : aucun nom cryptique détecté
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
+# ============================================================================
+# plant_shop/backends.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop/backends.py
+============================================================
+
+--- FONCTIONS ---
+OK : toutes les fonctions <= 15 lignes
+Fonctions sans Javadoc :
+  - authenticate (ligne 5)
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+OK : tous les intervalles <= 50 lignes
+
+--- VARIABLES ---
+Noms potentiellement cryptiques (à vérifier) :
+  - param:**kwargs (ligne 5) : segments non reconnus [**kwargs]
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
+# ============================================================================
+# plant_shop/management/commands/seed.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop/management/commands/seed.py
+============================================================
+
+--- FONCTIONS ---
+Fonctions > 15 lignes :
+  - creer_commandes (ligne 85) : 18 lignes
+Fonctions sans Javadoc :
+  - get_nom_plante (ligne 34)
+  - reset_database (ligne 40)
+  - creer_admins (ligne 47)
+  - creer_users (ligne 56)
+  - ecrire_fichier_credentials (ligne 65)
+  - creer_plantes (ligne 75)
+  - creer_commandes (ligne 85)
+  - handle (ligne 107)
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+Intervalles > 50 lignes :
+  - lignes 1-121 : 121 lignes
+
+--- VARIABLES ---
+Accents manquants :
+  - quantite (ligne 93) : quantite → quantité
+
+Noms potentiellement cryptiques (à vérifier) :
+  - NB_ADMINS (ligne 9) : segments non reconnus [NB]
+  - NB_USERS (ligne 10) : segments non reconnus [NB]
+  - NB_PLANTS (ligne 11) : segments non reconnus [NB]
+  - param:*args (ligne 107) : segments non reconnus [*args]
+  - param:**opts (ligne 107) : segments non reconnus [**opts]
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
+# ============================================================================
+# plant_shop_python_django/settings.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop_python_django/settings.py
+============================================================
+
+--- FONCTIONS ---
+OK : toutes les fonctions <= 15 lignes
+OK : toutes les fonctions ont un Javadoc
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+Intervalles > 50 lignes :
+  - lignes 1-51 : 51 lignes
+
+--- VARIABLES ---
+Accents manquants :
+  - STATIC_URL (ligne 46) : URL → URL
+  - LOGIN_REDIRECT_URL (ligne 51) : URL → URL
+
+Noms potentiellement cryptiques (à vérifier) :
+  - BASE_DIR (ligne 2) : segments non reconnus [DIR]
+  - ROOT_URLCONF (ligne 27) : segments non reconnus [URLCONF]
+  - WSGI_APPLICATION (ligne 39) : segments non reconnus [WSGI]
+  - STATICFILES_DIRS (ligne 47) : segments non reconnus [STATICFILES, DIRS]
+  - AUTH_USER_MODEL (ligne 49) : segments non reconnus [AUTH]
+  - AUTHENTICATION_BACKENDS (ligne 50) : segments non reconnus [BACKENDS]
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
+# ============================================================================
+# plant_shop_python_django/urls.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop_python_django/urls.py
+============================================================
+
+--- FONCTIONS ---
+OK : toutes les fonctions <= 15 lignes
+OK : toutes les fonctions ont un Javadoc
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+OK : tous les intervalles <= 50 lignes
+
+--- VARIABLES ---
+Noms potentiellement cryptiques (à vérifier) :
+  - urlpatterns (ligne 3) : segments non reconnus [urlpatterns]
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
+# ============================================================================
+# plant_shop_python_django/wsgi.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop_python_django/wsgi.py
+============================================================
+
+--- FONCTIONS ---
+OK : toutes les fonctions <= 15 lignes
+OK : toutes les fonctions ont un Javadoc
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+OK : tous les intervalles <= 50 lignes
+
+--- VARIABLES ---
+OK : aucun nom cryptique détecté
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
+# ============================================================================
+# plant_shop_python_django/asgi.py
+# ============================================================================
+
+============================================================
+FICHIER : /home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/plant_shop/Python/plant_shop_python_django_style_scientifique/plant_shop_python_django/asgi.py
+============================================================
+
+--- FONCTIONS ---
+OK : toutes les fonctions <= 15 lignes
+OK : toutes les fonctions ont un Javadoc
+OK : tous les @param valides (présence type)
+
+--- SECTIONS ---
+OK : tous les intervalles <= 50 lignes
+
+--- VARIABLES ---
+OK : aucun nom cryptique détecté
+OK : aucun chiffre détecté dans les noms
+[AVERTISSEMENT] Section 'Données' non trouvée dans le fichier
+                Les variables globales ne peuvent pas être vérifiées
+[IGNORÉ] --check-var : JS/TS uniquement
+
