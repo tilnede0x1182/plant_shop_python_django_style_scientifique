@@ -349,8 +349,8 @@ class Cart {
 
 /**
  * Affiche une alerte personnalisée en haut de la page si stock insuffisant.
- * @param {string} plantName Nom de la plante concernée
- * @param {number} stock Quantité maximale disponible
+ * @param plantName string Nom de la plante concernée
+ * @param stock number Quantité maximale disponible
  */
 function showStockAlert(plantName, stock) {
 	const wrapper = document.getElementById("cart-alert-wrapper") || createCartAlertWrapper();

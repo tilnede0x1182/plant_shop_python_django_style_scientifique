@@ -9,15 +9,40 @@ import json
 admin_required = user_passes_test(lambda u: u.is_authenticated and u.admin,
                                   login_url="/admin/")
 
+"""
+	Affiche la liste des plantes disponibles.
+
+	@param request Requête HTTP
+	@return Réponse HTML avec liste des plantes
+"""
 def plant_index(request):
     return render(request, "plants/index.html", {"plants": Plant.objects.order_by("name")})
 
+"""
+	Affiche le détail d'une plante.
+
+	@param request Requête HTTP
+	@param pk Identifiant de la plante
+	@return Réponse HTML avec détails de la plante
+"""
 def plant_show(request, pk):
     return render(request, "plants/show.html", {"plant": get_object_or_404(Plant, pk=pk)})
 
+"""
+	Affiche le panier de l'utilisateur.
+
+	@param request Requête HTTP
+	@return Réponse HTML avec contenu du panier
+"""
 def cart_index(request):
     return render(request, "carts/index.html")
 
+"""
+	Gère l'inscription d'un nouvel utilisateur.
+
+	@param request Requête HTTP (GET ou POST)
+	@return Réponse HTML formulaire ou redirection
+"""
 def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
@@ -29,6 +54,12 @@ def signup(request):
         form = CustomUserCreationForm()
     return render(request, "users/signup.html", {"form": form})
 
+"""
+	Affiche l'historique des commandes de l'utilisateur.
+
+	@param request Requête HTTP
+	@return Réponse HTML avec liste des commandes
+"""
 @login_required
 def order_index(request):
     orders = list(request.user.orders.order_by("-created_at"))
@@ -36,10 +67,22 @@ def order_index(request):
         order.display_number = len(orders) - i
     return render(request, "orders/index.html", {"orders": orders})
 
+"""
+	Affiche le formulaire de création de commande.
+
+	@param request Requête HTTP
+	@return Réponse HTML formulaire nouvelle commande
+"""
 @login_required
 def order_new(request):
     return render(request, "orders/new.html")
 
+"""
+	Traite la création d'une nouvelle commande.
+
+	@param request Requête HTTP POST avec items JSON
+	@return Redirection vers liste commandes
+"""
 @login_required
 def order_create(request):
     items = json.loads(request.POST.get("items", "[]"))
@@ -58,14 +101,32 @@ def order_create(request):
     messages.success(request, "Commande confirmée.")
     return redirect("/orders/?cleared=1")
 
+"""
+	Affiche le profil de l'utilisateur connecté.
+
+	@param request Requête HTTP
+	@return Réponse HTML avec informations utilisateur
+"""
 @login_required
 def profile_view(request):
     return render(request, "users/profile.html", {"user": request.user})
 
+"""
+	Affiche la liste admin de toutes les plantes.
+
+	@param request Requête HTTP
+	@return Réponse HTML avec liste des plantes
+"""
 @admin_required
 def admin_plants_index(request):
     return render(request, "admin/plants/index.html", {"plants": Plant.objects.order_by("name")})
 
+"""
+	Formulaire de création de plante (admin).
+
+	@param request Requête HTTP (GET ou POST)
+	@return Réponse HTML formulaire ou redirection
+"""
 @admin_required
 def admin_plants_new(request):
     from django.forms import modelform_factory
@@ -74,6 +135,13 @@ def admin_plants_new(request):
         form.save(); messages.success(request, "Plante créée."); return redirect("admin_plants")
     return render(request, "admin/plants/new.html", {"form": PlantForm()})
 
+"""
+	Formulaire d'édition d'une plante (admin).
+
+	@param request Requête HTTP (GET ou POST)
+	@param pk Identifiant de la plante
+	@return Réponse HTML formulaire ou redirection
+"""
 @admin_required
 def admin_plants_edit(request, pk):
     plant = get_object_or_404(Plant, pk=pk)
@@ -83,6 +151,13 @@ def admin_plants_edit(request, pk):
         form.save(); messages.success(request, "Plante mise à jour."); return redirect("admin_plants")
     return render(request, "admin/plants/edit.html", {"form": PlantForm(instance=plant), "plant": plant})
 
+"""
+	Supprime une plante (admin, POST uniquement).
+
+	@param request Requête HTTP POST
+	@param pk Identifiant de la plante
+	@return Redirection vers liste admin
+"""
 @admin_required
 def admin_plants_delete(request, pk):
     plant = get_object_or_404(Plant, pk=pk)
@@ -92,15 +167,34 @@ def admin_plants_delete(request, pk):
         return redirect("admin_plants")
     return redirect("plants_index")
 
+"""
+	Affiche la liste admin de tous les utilisateurs.
+
+	@param request Requête HTTP
+	@return Réponse HTML avec liste des utilisateurs
+"""
 @admin_required
 def admin_users_index(request):
     return render(request, "admin/users/index.html", {"users": User.objects.order_by("-admin", "name")})
 
+"""
+	Affiche le détail d'un utilisateur (admin).
+
+	@param request Requête HTTP
+	@param pk Identifiant de l'utilisateur
+	@return Réponse HTML avec détails utilisateur
+"""
 @admin_required
 def admin_users_show(request, pk):
     user = get_object_or_404(User, pk=pk)
     return render(request, "admin/users/show.html", {"user": user})
 
+"""
+	Formulaire de création d'utilisateur (admin).
+
+	@param request Requête HTTP (GET ou POST)
+	@return Réponse HTML formulaire ou redirection
+"""
 @admin_required
 def admin_users_new(request):
     from django.forms import modelform_factory
@@ -113,6 +207,13 @@ def admin_users_new(request):
         return redirect("admin_users")
     return render(request, "admin/users/new.html", {"form": UserForm()})
 
+"""
+	Formulaire d'édition d'un utilisateur (admin).
+
+	@param request Requête HTTP (GET ou POST)
+	@param pk Identifiant de l'utilisateur
+	@return Réponse HTML formulaire ou redirection
+"""
 @admin_required
 def admin_users_edit(request, pk):
     user = get_object_or_404(User, pk=pk)
@@ -124,6 +225,13 @@ def admin_users_edit(request, pk):
         return redirect("admin_users")
     return render(request, "admin/users/edit.html", {"form": UserForm(instance=user), "user": user})
 
+"""
+	Supprime un utilisateur (admin, POST uniquement).
+
+	@param request Requête HTTP POST
+	@param pk Identifiant de l'utilisateur
+	@return Redirection vers liste admin
+"""
 @admin_required
 def admin_users_delete(request, pk):
     user = get_object_or_404(User, pk=pk)
@@ -135,15 +243,30 @@ def admin_users_delete(request, pk):
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView as DjangoLoginView
 
+"""
+	Vue de connexion personnalisée avec logs de debug.
+"""
 class LoginView(DjangoLoginView):
     form_class = AuthenticationForm
     template_name = "users/login.html"
 
+    """
+	Appelée quand le formulaire de connexion est invalide.
+
+	@param form Formulaire AuthenticationForm invalide
+	@return Réponse HTTP avec erreurs
+    """
     def form_invalid(self, form):
         print("Formulaire invalide")
         print("Erreurs : ", form.errors)
         return super().form_invalid(form)
 
+    """
+	Appelée quand le formulaire de connexion est valide.
+
+	@param form Formulaire AuthenticationForm valide
+	@return Réponse HTTP redirection
+    """
     def form_valid(self, form):
         print("Connexion réussie pour :", form.get_user())
         return super().form_valid(form)

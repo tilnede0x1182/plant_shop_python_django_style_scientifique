@@ -31,12 +31,22 @@ NOMS_PLANTES = [
 ]
 
 # # Fonctions utilitaires
+
+"""
+	Retourne le nom de la plante selon l'index.
+
+	@param index Index de la plante dans la liste
+	@return Nom de la plante
+"""
 def get_nom_plante(index):
 	noms_taille = len(NOMS_PLANTES)
 	if NB_PLANTS > noms_taille:
 		return f"{NOMS_PLANTES[index % noms_taille]} {index // noms_taille + 1}"
 	return NOMS_PLANTES[index % noms_taille]
 
+"""
+	Réinitialise la base de données en supprimant toutes les entrées.
+"""
 def reset_database():
 	OrderItem.objects.all().delete()
 	Order.objects.all().delete()
@@ -44,6 +54,12 @@ def reset_database():
 	User = get_user_model()
 	User.objects.all().delete()
 
+"""
+	Crée les administrateurs de test.
+
+	@param fake Instance Faker pour générer les données
+	@return Liste des administrateurs créés
+"""
 def creer_admins(fake):
 	User = get_user_model()
 	admins = []
@@ -53,6 +69,12 @@ def creer_admins(fake):
 			admin=True, name=fake.name()))
 	return admins
 
+"""
+	Crée les utilisateurs normaux de test.
+
+	@param fake Instance Faker pour générer les données
+	@return Liste des utilisateurs créés
+"""
 def creer_users(fake):
 	User = get_user_model()
 	users = []
@@ -62,6 +84,12 @@ def creer_users(fake):
 			admin=False, name=fake.name()))
 	return users
 
+"""
+	Écrit les credentials dans un fichier texte.
+
+	@param admins Liste des administrateurs
+	@param users Liste des utilisateurs
+"""
 def ecrire_fichier_credentials(admins, users):
 	with pathlib.Path("users.txt").open("w", encoding="utf-8") as fichier:
 		fichier.write("Liste des utilisateurs générés :\n\n")
@@ -72,6 +100,12 @@ def ecrire_fichier_credentials(admins, users):
 		for user in users:
 			fichier.write(f"{user.email} password\n")
 
+"""
+	Crée les plantes de test.
+
+	@param fake Instance Faker pour générer les données
+	@return Liste des plantes créées
+"""
 def creer_plantes(fake):
 	plants = []
 	for index in range(NB_PLANTS):
@@ -82,6 +116,13 @@ def creer_plantes(fake):
 			stock=random.randint(5, 30)))
 	return plants
 
+"""
+	Crée des commandes de test pour tous les utilisateurs.
+
+	@param admins Liste des administrateurs
+	@param users Liste des utilisateurs
+	@param plants Liste des plantes disponibles
+"""
 def creer_commandes(admins, users, plants):
 	for utilisateur in admins + users:
 		commande = Order.objects.create(
@@ -101,9 +142,20 @@ def creer_commandes(admins, users, plants):
 		commande.save(update_fields=["total_price"])
 
 # # Main Commande
+
+"""
+	Commande Django pour initialiser la base de données avec des données de test.
+	Crée admins, utilisateurs, plantes et commandes.
+"""
 class Command(BaseCommand):
 	help = "Initialisation de la seed (équivalent seeds.rb)"
 
+	"""
+	Point d'entrée de la commande de seed.
+
+	@param args Arguments positionnels
+	@param opts Options de la commande
+	"""
 	def handle(self, *args, **opts):
 		self.stdout.write("🔄 Initialisation de la seed...")
 		fake = Faker("fr_FR")
